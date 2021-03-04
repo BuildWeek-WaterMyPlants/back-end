@@ -14,8 +14,8 @@ function find() {
     'id',
     'nickname',
     'species',
-    'h2o_frequency',
     'user_id',
+    'date',
     'image_url'
   );
 }
