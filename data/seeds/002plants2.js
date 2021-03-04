@@ -1,7 +1,9 @@
 exports.seed = function (knex) {
+  // Deletes ALL existing entries
   return knex('plants')
-    .truncate()
+    .del()
     .then(function () {
+      // Inserts seed entries
       return knex('plants').insert([
         {
           id: 1,
@@ -9,7 +11,7 @@ exports.seed = function (knex) {
           species: 'Aloe Vera',
           image_url:
             'https://images.unsplash.com/photo-1567689265664-1c48de61db0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80',
-          date: date.setTime(date.getTime() + days * 86400000),
+          date: new Date().toUTCString(),
           user_id: 1,
         },
         {
@@ -18,7 +20,7 @@ exports.seed = function (knex) {
           species: 'Adenium Obesium',
           image_url:
             'https://images.unsplash.com/photo-1586170112425-3adf1ed0146e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-          date: date.setTime(date.getTime() + days * 86400000),
+          date: new Date().toUTCString(),
           user_id: 1,
         },
         {
@@ -27,7 +29,7 @@ exports.seed = function (knex) {
           species: 'Nephrolepis Exaltata',
           image_url:
             'https://www.plantshop.me/media/product/89280-00-bakie_20190222085524.jpg',
-          date: date.setTime(date.getTime() + days * 86400000),
+          date: new Date().toUTCString(),
           user_id: 1,
         },
       ]);

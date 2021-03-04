@@ -4,8 +4,8 @@ const cors = require('cors');
 
 const authRouter = require('../auth/auth-router.js');
 const plantsRouter = require('../plants/plants-router.js');
-const notesRouter = require('../plants/notes-router.js');
-const tasksRouter = require('../plants/tasks-router.js');
+const notesRouter = require('../notes/notes-router.js');
+const tasksRouter = require('../tasks/tasks-router.js');
 const restricted = require('../auth/restricted-middleware.js');
 const usersRouter = require('../users/users-router');
 
@@ -17,8 +17,8 @@ server.use(cors());
 
 server.use('/api/auth', authRouter);
 server.use('/api/plants', restricted, plantsRouter);
-server.use('/api/plants/notes', restricted, notesRouter);
-server.use('/api/plants/tasks', restricted, tasksRouter);
+server.use('/api/notes', restricted, notesRouter);
+server.use('/api/tasks', restricted, tasksRouter);
 server.use('/api/users', usersRouter);
 
 server.get('/', (req, res) => {

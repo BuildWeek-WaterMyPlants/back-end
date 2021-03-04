@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function find() {
-  return db('notes').select('id', 'title', 'body', 'date', 'plant_id');
+  return db('notes').select('id', 'body', 'date', 'plant_id');
 }
 
 function findByPlant(plantid) {
