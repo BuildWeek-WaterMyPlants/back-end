@@ -1,43 +1,48 @@
-const db = require( '../data/dbConfig' );
+const db = require('../data/dbConfig');
 
 module.exports = {
-	add,
-	find,
-	findByUser,
-	findById,
-	update,
-	remove,
+  add,
+  find,
+  findByUser,
+  findById,
+  update,
+  remove,
 };
 
 function find() {
-	return db('plants').select( 'id', 'nickname', 'species', 'h2o_frequency', 'user_id', 'image_url' );
-};
+  return db('plants').select(
+    'id',
+    'nickname',
+    'species',
+    'user_id',
+    'date',
+    'image_url'
+  );
+}
 
-function findByUser( userid ) {
-	return db('plants').where('user_id', userid);
-};
+function findByUser(userid) {
+  return db('plants').where('user_id', userid);
+}
 
-function add( plant, userid ) {
-    plant.user_id = userid;
-	return db('plants').insert(plant, 'id');
+function add(plant, userid) {
+  plant.user_id = userid;
+  return db('plants').insert(plant, 'id');
+}
 
-};
+function findById(id) {
+  return db('plants').where({ id }).first();
+}
 
-function findById( id ) {
-	return db('plants')
-		.where({ id }).first();
-};
+function update(id, changes) {
+  return db('plants').where({ id }).update(changes);
+}
 
-function update( id, changes ) {
-	return db('plants').where({ id }).update(changes);
-};
-
-async function remove( id ){
-    const found = await findById(id)
-    return db('plants')
-        .where({ id })
-        .delete()
-        .then(() => {
-            return found  
-        })
-};
+async function remove(id) {
+  const found = await findById(id);
+  return db('plants')
+    .where({ id })
+    .delete()
+    .then(() => {
+      return found;
+    });
+}
